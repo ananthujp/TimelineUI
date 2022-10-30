@@ -9,7 +9,7 @@ function Input({ setDisplay, edit, setEdit }) {
     title: edit?.title,
     subtitle: edit?.subtitle,
     details: edit?.data,
-    date: edit?.date,
+    date: new Date(edit.date.toString()).toISOString().split("T")[0],
     pics: edit?.pics,
     child: edit?.child,
   });
@@ -152,11 +152,7 @@ function Input({ setDisplay, edit, setEdit }) {
                 type="date"
                 name="date"
                 id="date"
-                value={
-                  edit
-                    ? new Date(edit.date.toString()).toISOString().split("T")[0]
-                    : form.date
-                }
+                value={form.date}
                 onChange={(e) => setForm({ ...form, date: e.target.value })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-sm font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />

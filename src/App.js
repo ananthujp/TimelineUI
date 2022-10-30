@@ -99,7 +99,6 @@ function App() {
       {display && (
         <Modal
           children={<Input setDisplay={setDisplay} />}
-          display={display}
           setDisplay={setDisplay}
         />
       )}
@@ -108,7 +107,6 @@ function App() {
           children={
             <Input setDisplay={setDisplay} edit={edit} setEdit={setEdit} />
           }
-          display={edit}
           setDisplay={setEdit}
         />
       )}

@@ -78,18 +78,6 @@ function Element({
   ).matches;
   return (
     <>
-      {i === 0 ? (
-        <div className="mx-auto text-xs bg-gray-200 px-2 py-0.5 rounded-md">
-          {date?.toLocaleString("default", { month: "long" })}
-        </div>
-      ) : dateN?.toLocaleString("default", { month: "numeric" }) !==
-        date?.toLocaleString("default", { month: "numeric" }) ? (
-        <div className="mx-auto text-xs bg-gray-200 px-2 py-0.5 rounded-md">
-          {date?.toLocaleString("default", { month: "long" })}
-        </div>
-      ) : (
-        <></>
-      )}
       <motion.div
         onClick={() => !opened && setOpen(true)}
         initial={{ opacity: 0, scale: 0.2 }}
@@ -143,7 +131,7 @@ function Element({
             >
               <div
                 className={
-                  "flex" + (rev ? " flex-row-reverse pl-6" : " flex-row pr-6")
+                  "flex" + (rev ? " flex-row-reverse pl-4" : " flex-row pr-4")
                 }
               >
                 <AnimatePresence>
@@ -180,11 +168,11 @@ function Element({
                       }}
                       exit={{ opacity: 0, transition: { delay: 0.2 } }}
                       className={
-                        "my-auto text-sm text-white" +
-                        (rev ? "  mr-2" : "  ml-2")
+                        "my-auto text-sm cursor-pointer text-white" +
+                        (rev ? "  mr-1" : "  ml-1")
                       }
                     >
-                      {title}
+                      {title.length < 15 ? title : title.slice(0, 14) + "..."}
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -194,7 +182,11 @@ function Element({
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1, transition: { delay: 1.5 } }}
-                    exit={{ opacity: 0, transition: { delay: 1.5 } }}
+                    exit={{
+                      opacity: 0,
+                      height: 0,
+                      transition: { delay: 0.5, duration: 0.3 },
+                    }}
                     className="flex flex-col bg-white h-full p-4"
                   >
                     <div className="w-full flex flex-row justify-between">
@@ -386,6 +378,18 @@ function Element({
           </div>
         </div>
       </motion.div>
+      {i === 0 ? (
+        <div className="mx-auto text-xs bg-gray-200 px-2 py-0.5 rounded-md">
+          {date?.toLocaleString("default", { month: "long" })}
+        </div>
+      ) : dateN?.toLocaleString("default", { month: "numeric" }) !==
+        date?.toLocaleString("default", { month: "numeric" }) ? (
+        <div className="mx-auto text-xs bg-gray-200 px-2 py-0.5 rounded-md">
+          {date?.toLocaleString("default", { month: "long" })}
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 }
