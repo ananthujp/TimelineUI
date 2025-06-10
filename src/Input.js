@@ -9,7 +9,9 @@ function Input({ setDisplay, edit, setEdit }) {
     title: edit?.title,
     subtitle: edit?.subtitle,
     details: edit?.data,
-    date: new Date(edit.date.toString()).toISOString().split("T")[0],
+    date: edit?.date
+      ? new Date(edit.date.toString()).toISOString().split("T")[0]
+      : null,
     pics: edit?.pics,
     child: edit?.child,
   });

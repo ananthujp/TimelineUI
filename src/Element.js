@@ -59,6 +59,11 @@ function Element({
       },
     });
   };
+  image?.url &&
+    console.log(
+      "image",
+      "https://lh3.googleusercontent.com/d/" + image?.url?.split("&id=")[1]
+    );
   const initial = async () => {
     await animationControls.start({
       height: 32,
@@ -84,7 +89,7 @@ function Element({
         transition={{
           type: "spring",
           stiffness: 100,
-          duration: 0.5,
+          duration: 0.25,
           delay: 0.0005,
         }}
         whileInView={{
@@ -333,11 +338,22 @@ function Element({
                         transition: { delay: 0.5 + i * 0.2, duration: 0.4 },
                       }}
                       key={`thumbs.id.${i}`}
-                      onClick={() => setImage({ ...image, id: i, url: dc })}
+                      onClick={() =>
+                        setImage({
+                          ...image,
+                          id: i,
+                          url:
+                            "https://lh3.googleusercontent.com/d/" +
+                            dc.split("&id=")[1],
+                        })
+                      }
                       className={
                         "bg-white border-4 border-white hover:sepia transition-all rounded-full h-12 w-12 object-cover shadow-lg "
                       }
-                      src={dc}
+                      src={
+                        "https://lh3.googleusercontent.com/d/" +
+                        dc.split("&id=")[1]
+                      }
                     />
                   ))}
                 </div>
@@ -371,7 +387,10 @@ function Element({
                       "bg-white border-4 border-white hover:sepia transition-all rounded-full h-12 w-12 object-cover shadow-lg " +
                       (isMobile ? " mb-2 " : " mb-12 ")
                     }
-                    src={dc}
+                    src={
+                      "https://lh3.googleusercontent.com/d/" +
+                      dc.split("&id=")[1]
+                    }
                   />
                 ))}
             </AnimatePresence>

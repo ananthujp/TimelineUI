@@ -42,8 +42,8 @@ function App() {
     },
   ];
   const Login = () => {
-    const email = "ananthujp@gmail.com";
-    const password = "passmein";
+    const email = prompt("Please enter the email:", "myemail@gmail.com");
+    const password = prompt("Please enter the password", "Universal Password");
     signInWithEmailAndPassword(auth, email, password).catch(function (error) {
       // Handle Errors here.
       var errorCode = error.code;
